@@ -71,7 +71,7 @@ class ListOfWalks extends Component {
                         <ListItem>
                             <Card onClick={() => this.props.onSelect(walk)} style={{ width: '100%'}}>
                                 <div style={{ height: 200, width: '100%' }} onClick={evt => evt.stopPropagation()}>
-                                    <Map zoomControl={false} centerRoute route={walk.path} />
+                                    <Map dragging={false} touchZoom={false} doubleClickZoom={false} scrollWheelZoom={false} centerRoute route={walk.path} />
                                 </div>
                                 <CardContent style={{ paddingTop: 0 }}>
                                     <div>

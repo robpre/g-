@@ -6,6 +6,7 @@ import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import './map.css';
 import bbox from '@turf/bbox';
+import EventEmitter from 'eventemitter3';
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
@@ -37,6 +38,17 @@ const getMiddle = (geo) => {
 };
 const flip = ([ lng, lat ]) => [lat, lng];
 
+const inc = ([o, t]) => {
+    return [o + .0001, t + .0001];
+};
+const dec = ([o, t]) => [o -.0001, t-.0001];
+
+const loc = new EventEmitter();
+navigator.geolocation.watchPosition((position) => {
+    console.log('got update');
+    loc.emit('up', position);
+}, handleError, geoOptions);
+
 class GaMap extends Component {
     constructor(props) {
         super(props);
@@ -47,20 +59,16 @@ class GaMap extends Component {
     }
 
     componentDidMount() {
-        try {
-            console.log('getting geolocation');
-            this.id = navigator.geolocation.watchPosition((position) => {
-                console.log('got update');
-                this.setState({ geo: [position.coords.latitude, position.coords.longitude] });
-            }, handleError, geoOptions);
-        } catch(e) {
-            alert(e.message);
-            throw e;
-        }
+        console.log('getting geolocation');
+        const self = this;
+        this.func = function(position) {
+            self.setState({ geo: [position.coords.latitude, position.coords.longitude] });
+        };
+        loc.addListener('up', this.func);
     }
 
     componentWillUnmount() {
-        navigator.geolocation.clearWatch(this.id);
+        loc.removeListener('up', this.func);
     }
 
     render() {
@@ -72,8 +80,8 @@ class GaMap extends Component {
 
         if (route && centerRoute) {
             const bboxArray = bbox(route);
-            const corner1 = [bboxArray[1], bboxArray[0]];
-            const corner2 = [bboxArray[3], bboxArray[2]];
+            const corner1 = dec([bboxArray[1], bboxArray[0]]);
+            const corner2 = inc([bboxArray[3], bboxArray[2]]);
             const bounds = [corner1, corner2];
             centering = { bounds };
         }
