@@ -19,20 +19,18 @@ class App extends Component {
     return (
       <div style={{height: '100%', width: '100%'}}>
         <Router>
-          <Switch>
-            <div style={{ height: '100%', width: '100%'}}>
-              <Route path="/">
-                <List onSelect={this.selectRoute} />
-              </Route>
-              <Route path="/map">
-                {() => (
-                  <FullscreenMap route={this.state.active && this.state.active.path} />
-                )}
-              </Route>
-              <Route path="/search">
-                  <h1>hi</h1>
-              </Route>
-            </div>
+          <Switch style={{ height: '100%', width: '100%'}}>
+            <Route path="/">
+              <List onSelect={this.selectRoute} />
+            </Route>
+            <Route path="/map">
+              {() => (
+                <FullscreenMap route={this.state.active && this.state.active.path} />
+              )}
+            </Route>
+            <Route path="/search">
+                <h1>hi</h1>
+            </Route>
           </Switch>
         </Router>
       </div>
