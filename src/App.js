@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import FullscreenMap from './components/FullscreenMap/FullscreenMap';
 import Search from "./components/Search/Search";
@@ -11,25 +11,29 @@ class App extends Component {
     active: null
   };
 
-  selectRoute = () => {
-
+  selectRoute = (walk) => {
+    this.setState({active: walk});
   };
 
   render() {
     return (
       <div style={{height: '100%', width: '100%'}}>
         <Router>
-          <div style={{ height: '100%', width: '100%'}}>
-            <Route path="/" component={List} />
-            <Route path="/map">
-              {() => (
-                <FullscreenMap route={this.state.active} />
-              )}
-            </Route>
-            <Route path="/search">
-                <h1>hi</h1>
-            </Route>
-          </div>
+          <Switch>
+            <div style={{ height: '100%', width: '100%'}}>
+              <Route path="/">
+                <List onSelect={this.selectRoute} />
+              </Route>
+              <Route path="/map">
+                {() => (
+                  <FullscreenMap route={this.state.active && this.state.active.path} />
+                )}
+              </Route>
+              <Route path="/search">
+                  <h1>hi</h1>
+              </Route>
+            </div>
+          </Switch>
         </Router>
       </div>
     );
