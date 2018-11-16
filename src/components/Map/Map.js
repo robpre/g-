@@ -18,7 +18,7 @@ if (!("geolocation" in navigator)) {
 
 const geoOptions = {
     enableHighAccuracy: true,
-    maximumAge        : 30000,
+    maximumAge        : 1000,
     timeout           : 5000
 };
 
@@ -40,6 +40,7 @@ class GaMap extends Component {
                 }, reject);
             }, geoOptions);
         } catch(e) {
+            alert(e.message);
             throw e;
         }
 
@@ -49,12 +50,12 @@ class GaMap extends Component {
 
     render() {
         const { children, ...props } = this.props;
-console.log('rendering geo', this.state);
+        console.log('rendering geo', this.state);
         return (
             <div className="map">
-                <Map center={this.state.geo} zoom={13} {...props}>
+                <Map center={this.state.geo} zoom={16} {...props}>
                     <TileLayer
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        url="http://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=37635e2da12d4bcf90bb1137d42cc392"
                         attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                     />
                     <Marker position={this.state.geo}></Marker>
