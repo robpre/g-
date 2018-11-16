@@ -2,6 +2,7 @@
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 const express = require('express');
+const haversine = require('haversine');
 
 admin.initializeApp();
 
@@ -35,17 +36,68 @@ app.use(authenticate);
 app.get('/walk/closest', async (req, res) => {
   try{
       
-    //order by Latlong distances 
+    const myLat = req.query.latitude;
+    const myLong = req.query.longitude;
     
-    res.status(200).json({nothing: "yet"});
+    
+    const myLocation = {
+      latitude: myLat,
+      longitude: myLong
+    };
+    
+    
+    const walks = await admin.database().ref(`/walk`).once('value');
+    const distanceToEach = [];
+    
+    walks.forEach((walk) => {
+    
+        //in reverse order in geoJSON
+        const features = walk.child("/path/features").val()[0];
+        
+        const walkLocation = {
+            latitude: features.geometry.coordinates[0][1], 
+            longitude: features.geometry.coordinates[0][0]
+        };
+        
+        console.log(walkLocation);
+        console.log(myLocation);
+        
+        //TODO: iterate over points and check for the nearest point rather than the start point
+        //User may be able to start the walk somewhere other than the start
+        
+        //console.log(haversine(start, end));
+        //console.log(haversine(start, end, {unit: 'mile'}));
+        const distanceToThis = haversine(myLocation, walkLocation);
+        
+        distanceToEach.push({
+            walk: walk.val(),
+            distanceTo: distanceToThis
+        });
+       
+    });
+    
+    distanceToEach.sort(function(a, b) {
+        return a.distanceTo - b.distanceTo;
+    });
+    
+    const sortedWalks = [];
+    
+    distanceToEach.forEach((distanceToWalkIndex) => {
+        sortedWalks.push({
+            ...distanceToWalkIndex.walk,
+            distanceFromMe:distanceToWalkIndex.distanceTo
+        });
+    });
+    
+    res.status(200).json(sortedWalks);
+    
     
   } catch(error) {
-    console.log('Error adding new walk', error.message);
+    console.log('Error ordering by closest', error.message);
     res.sendStatus(500);
   }  
   
 });
-
 
 // POST walking route
 // Validate and store walk submission
@@ -54,70 +106,37 @@ app.post('/walk/add', async (req, res) => {
   const walkTitle = req.body.title;
   const walkDistance = req.body.distance;
   const walkTime = req.body.time;
-  const walkIsFlat = (req.body.is_flat == "on");
-  const walkLighting = req.body.lighting;
-  const walkIsShortSightedFriendly = (req.body.is_ssf == "on");
-  //const walkPhoto = req.body.photo;
-  const walkIsMuddy = (req.body.is_muddy == "on");
   const walkShoes = req.body.shoes;
   const walkPath = JSON.parse(req.body.path);
+  
+  const isFlat = (req.body.isFlat == "on");
+  const isWellLit = (req.body.isWellLit == "on");
+  const isShortSightedFriendly = (req.body.isShortSightedFriendly == "on");
+  const isMuddy = (req.body.isMuddy == "on");
+  const isBuggyFriendly = (req.body.isBuggyFriendly == "on");
+  const isWheelchairFriendly = (req.body.isWheelchairFriendly == "on");
+  const isSlipHazard = (req.body.isSlipHazard == "on");
+  const isChildSafe = (req.body.isChildSafe == "on");
+  const isRoadSafe = (req.body.isRoadSafe == "on");
+  const isLearningBicycleFriendly = (req.body.isLearningBicycleFriendly == "on");
   
   try {
         const data = {
             title: walkTitle, 
             distance: walkDistance, 
             time: walkTime, 
-            lighting: walkLighting,
-            is_flat: walkIsFlat, 
-            is_ssf: walkIsShortSightedFriendly,
-            is_muddy:  walkIsMuddy,
-            shoes : walkShoes
-         };
-                 
-        //TODO: validate inputs here
-                   
-        const newWalkKey = await admin.database().ref(`/walk`).push(data).key;
-        
-        res.status(201).json({
-        
-            ...data,id:newWalkKey
-        
-        
-        });
-        
-        
-  } catch(error) {
-    console.log('Error adding new walk', error.message);
-    res.sendStatus(500);
-  }
-});
-
-// POST walking route
-// Validate and store walk submission
-app.post('/walk/fromgeojson', async (req, res) => {
-  
-  const walkTitle = req.body.title;
-  const walkDistance = req.body.distance;
-  const walkTime = req.body.time;
-  const walkIsFlat = (req.body.is_flat == "on");
-  const walkLighting = req.body.lighting;
-  const walkIsShortSightedFriendly = (req.body.is_ssf == "on");
-  //const walkPhoto = req.body.photo;
-  const walkIsMuddy = (req.body.is_muddy == "on");
-  const walkShoes = req.body.shoes;
-  const walkPath = JSON.parse(req.body.path);
-  
-  try {
-        const data = {
-            title: walkTitle, 
-            distance: walkDistance, 
-            time: walkTime, 
-            lighting: walkLighting,
-            is_flat: walkIsFlat, 
-            is_ssf: walkIsShortSightedFriendly,
-            is_muddy:  walkIsMuddy,
             shoes : walkShoes,
-            path : walkPath
+            path : walkPath,
+            isFlat: isFlat,
+            isWellLit: isWellLit,
+            isShortSightedFriendly: isShortSightedFriendly,
+            isMuddy: isMuddy,
+            isBuggyFriendly: isBuggyFriendly,
+            isWheelchairFriendly: isWheelchairFriendly,
+            isSlipHazard: isSlipHazard,
+            isChildSafe: isChildSafe,
+            isRoadSafe: isRoadSafe,
+            isLearningBicycleFriendly: isLearningBicycleFriendly
          };
 
         const newWalkKey = await admin.database().ref(`/walk`).push(data).key;
@@ -140,13 +159,14 @@ app.post('/walk/fromgeojson', async (req, res) => {
 app.post('/walk/:walkId', async (req, res) => {
   const message = req.body.message;
   try {
-      const snapshot = await admin.database().ref(`/walk/${walkId}`).once('value');
+    const snapshot = await admin.database().ref(`/walk/${walkId}`).once('value');
     if (!snapshot.exists()) {
       return res.status(404).json({errorCode: 404, errorMessage: `walk '${walkId}' not found`});
     }
+    res.json(snapshot.val());
     return res.set('Cache-Control', 'private, max-age=300');
   } catch(error) {
-    console.log('Error detecting sentiment or saving message', error.message);
+    console.log('Error accessing specified walk (does it exist?)', error.message);
     res.sendStatus(500);
   }
 });
@@ -162,7 +182,7 @@ app.get('/walk/all', async (req, res) => {
     res.json(snapshot.val());
     return res.set('Cache-Control', 'private, max-age=300');
   } catch(error) {
-    console.log('Error getting message details', error.message);
+    console.log('Error getting walks', error.message);
     return res.sendStatus(500);
   }
 });
