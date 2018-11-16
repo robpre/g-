@@ -18,7 +18,7 @@ if (!("geolocation" in navigator)) {
 
 const geoOptions = {
     enableHighAccuracy: true,
-    maximumAge        : 1000,
+    maximumAge        : 500,
     timeout           : 5000
 };
 
@@ -26,26 +26,22 @@ class GaMap extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {geo: undefined};
+        this.state = {
+            geo: undefined
+        };
     }
 
     async componentDidMount() {
-        let geo;
-
         try {
             console.log('getting geolocation');
-            geo = await new Promise((resolve, reject) => {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    resolve([position.coords.latitude, position.coords.longitude]);
-                }, reject);
-            }, geoOptions);
+            navigator.geolocation.watchPosition((position) => {
+                console.log('got update');
+                this.setState({ geo: [position.coords.latitude, position.coords.longitude] });
+            }, alert, geoOptions);
         } catch(e) {
             alert(e.message);
             throw e;
         }
-
-        console.log('got geo', geo);
-        this.setState({ geo });
     }
 
     render() {
