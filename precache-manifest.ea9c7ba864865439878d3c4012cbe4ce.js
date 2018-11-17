@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "15d693fa8128266ca47f",
+    "revision": "b10e2d05805b1f592237",
     "url": "/g-/static/css/main.d2c2e42a.chunk.css"
   },
   {
-    "revision": "15d693fa8128266ca47f",
-    "url": "/g-/static/js/main.15d693fa.chunk.js"
+    "revision": "b10e2d05805b1f592237",
+    "url": "/g-/static/js/main.b10e2d05.chunk.js"
   },
   {
     "revision": "e4cf155e94c4a389ad8c",
@@ -76,7 +76,7 @@ self.__precacheManifest = [
     "url": "/g-/static/media/learnbike.1f34ceaf.svg"
   },
   {
-    "revision": "450d48c2b145f8a36431fe92e21b7f77",
+    "revision": "3b3d99f48c193fc43c3ad2e100057247",
     "url": "/g-/index.html"
   }
 ];
