@@ -5,9 +5,15 @@ import FullscreenMap from './components/FullscreenMap/FullscreenMap';
 import Search from "./components/Search/Search";
 import { createBrowserHistory } from 'history';
 import List from './components/List/List';
-const history = createBrowserHistory();
 
 const existing = localStorage.getItem('active-walk');
+
+const { PUBLIC_URL } = process.env;
+const history = createBrowserHistory({
+  basename: PUBLIC_URL || '',
+});
+
+export const pp = (p) => `${PUBLIC_URL || ''}p`;
 
 class App extends Component {
   state = {
@@ -17,7 +23,7 @@ class App extends Component {
   selectRoute = (walk) => {
     this.setState({active: walk});
     localStorage.setItem('active-walk', JSON.stringify(walk));
-    history.push('/map');
+    history.push(pp('/map'));
   };
 
   render() {
@@ -25,15 +31,15 @@ class App extends Component {
       <div style={{height: '100%', width: '100%'}}>
         <Router history={history}>
           <Switch style={{ height: '100%', width: '100%'}}>
-            <Route path="/" exact>
+            <Route path={`/`} exact>
               <List onSelect={this.selectRoute} />
             </Route>
-            <Route path="/map">
+            <Route path={`/map`}>
               {(p) => (console.log(this.state.active) ||
                 <FullscreenMap centerRoute route={this.state.active && this.state.active.path} />
               )}
             </Route>
-            <Route path="/search">
+            <Route path={`/search`}>
                 <h1>hi</h1>
             </Route>
           </Switch>
