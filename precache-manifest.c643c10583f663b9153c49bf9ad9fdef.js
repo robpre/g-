@@ -1,19 +1,19 @@
 self.__precacheManifest = [
   {
-    "revision": "2d8330e3d38a1a2fa881",
-    "url": "/static/css/main.6ceafcd1.chunk.css"
+    "revision": "a850c03f30dbaf9a1bdc",
+    "url": "/static/css/main.6bfefc35.chunk.css"
   },
   {
-    "revision": "2d8330e3d38a1a2fa881",
-    "url": "/static/js/main.2d8330e3.chunk.js"
+    "revision": "a850c03f30dbaf9a1bdc",
+    "url": "/static/js/main.a850c03f.chunk.js"
   },
   {
-    "revision": "06cf4b8e93a25dd9aca8",
-    "url": "/static/css/1.d9bb6084.chunk.css"
+    "revision": "834164295302efdf18cf",
+    "url": "/static/css/1.52a7e3b7.chunk.css"
   },
   {
-    "revision": "06cf4b8e93a25dd9aca8",
-    "url": "/static/js/1.06cf4b8e.chunk.js"
+    "revision": "834164295302efdf18cf",
+    "url": "/static/js/1.83416429.chunk.js"
   },
   {
     "revision": "229c360febb4351a89df",
@@ -76,7 +76,7 @@ self.__precacheManifest = [
     "url": "/static/media/learnbike.8f4a6d47.svg"
   },
   {
-    "revision": "3b4311c71d35ecafabc66f3e4b7b0785",
+    "revision": "0d0fbe5ccadbd94a03dd308e199f71b9",
     "url": "/index.html"
   }
 ];
