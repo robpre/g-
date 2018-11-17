@@ -46,6 +46,7 @@ class FullscreenMap extends Component {
                             background: 'rgba(255, 255, 255, 0.80)',
                             fontSize: '1.5rem',
                             padding: '1rem',
+                            textAlign: 'center',
                         }}>
                             Enjoy your {props.active && props.active.length} mile walk!
                         </div>
@@ -68,7 +69,7 @@ class FullscreenMap extends Component {
                             this.state.done && (
                                 <p style={{
                                     fontSize: '2rem',
-                                    background: 'rgba(255, 255, 255, 0.7)',
+                                    background: 'rgba(255, 255, 255, 0.8)',
                                     padding: '1rem',
                                     borderRadius: '10%',
                                     display: 'flex',
@@ -78,7 +79,7 @@ class FullscreenMap extends Component {
                                 }}>
                                     <span role="img" aria-label="celebration emoji">🎉</span> Congratulations!
                                     <br />
-                                    You've walked another 3 miles!
+                                    You've walked another {props.active && props.active.length} miles!
                                     <br />
                                     <Link to={pp('/')} style={{textDecoration: 'none'}}>
                                         <Button variant="extendedFab" color="secondary">
