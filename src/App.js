@@ -1,33 +1,62 @@
 import React, { Component } from 'react';
-import './map.css';
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
+import { Router, Route, Link, Switch } from "react-router-dom";
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import FullscreenMap from './components/FullscreenMap/FullscreenMap';
+import Search from "./components/Search/Search";
+import { createBrowserHistory } from 'history';
+import List from './components/List/List';
 
-import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+const existing = localStorage.getItem('active-walk');
 
-let DefaultIcon = L.icon({
-  iconUrl: icon,
-  shadowUrl: iconShadow,
+const { PUBLIC_URL } = process.env;
+const history = createBrowserHistory({
+  basename: PUBLIC_URL || '',
 });
-L.Marker.prototype.options.icon = DefaultIcon;
 
-const position = [51.505, -0.09]
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#ec6711',
+    },
+    secondary: {
+      main: '#b39a19'
+    },
+  },
+});
+
+export const pp = (p) => `${''}${p}`;
 
 class App extends Component {
+  state = {
+    active: existing && JSON.parse(existing),
+  };
+
+  selectRoute = (walk) => {
+    this.setState({active: walk});
+    localStorage.setItem('active-walk', JSON.stringify(walk));
+    history.push(pp('/map'));
+  };
+
   render() {
     return (
-      <div style={{height: 500, width: 500}} className="map">
-        <Map center={position} zoom={13}>
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-          />
-          <Marker position={position}>
-            <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
-          </Marker>
-        </Map>
+      <div style={{height: '100%', width: '100%'}}>
+        <MuiThemeProvider theme={theme}>
+          <Router history={history}>
+            <Switch style={{ height: '100%', width: '100%'}}>
+              <Route path={`/`} exact>
+                <List onSelect={this.selectRoute} />
+              </Route>
+              <Route path={`/map`}>
+                {(p) => (
+                  <FullscreenMap centerRoute active={this.state.active} route={this.state.active && this.state.active.path} />
+                )}
+              </Route>
+              <Route path={`/search`}>
+                  <h1>hi</h1>
+              </Route>
+            </Switch>
+          </Router>
+        </MuiThemeProvider>
       </div>
     );
   }

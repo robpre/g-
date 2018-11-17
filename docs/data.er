@@ -1,0 +1,7 @@
+title {label: "Datastore Shape", size: "20"}
+
+# Entities
+
+[route] {bgcolor: "#d0e0d0"}
+  name {label: "string"}
+  route {label: "array of lat,lng"}

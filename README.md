@@ -1,4 +1,4 @@
-# Wellbeing walks
+# Gå
 
 ## Pre-requisites
 
@@ -8,7 +8,7 @@
 ## quickstart
 
 ```bash
-git clone git@github.com:RpprRoger/ww.git
+git clone git@github.com:RpprRoger/g-.git
 cd ww
 nvm install
 npm install
