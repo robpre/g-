@@ -11,7 +11,7 @@ import flat from './flatsurface.svg';
 import child from './child.svg';
 import road from './road.svg';
 import learnbike from './learnbike.svg';
-import { GridList, GridListTile } from '@material-ui/core';
+import { GridList, GridListTile, Tooltip } from '@material-ui/core';
 
 export default ({meta}) => {
     const tileData = [];
@@ -30,7 +30,7 @@ export default ({meta}) => {
         { field: 'isRoadSafe', name: 'Road safe', image: road },
         { field: 'isLearningToRideAbike', name: 'Learning to ride a bike', image: learnbike },
     ].forEach(({field, name, image}) => {
-        if (meta[field]) {
+        if (meta[field] && tileData.length < 5) {
             tileData.push({
                 name, image
             })
@@ -38,10 +38,12 @@ export default ({meta}) => {
     });
 
     return (
-        <GridList cellHeight={24} cols={3}>
+        <GridList cellHeight={48} cols={5}>
             {tileData.map(tile => (
                 <GridListTile key={tile.name} cols={1}>
-                    <img src={tile.image} alt={tile.name} title={tile.name} />
+                    <Tooltip disableHoverListener title={tile.name} onClick={evt => evt.stopPropagation()}>
+                        <img src={tile.image} alt={tile.name} title={tile.name} width="48" height="48" />
+                    </Tooltip>
                 </GridListTile>
             ))}
         </GridList>

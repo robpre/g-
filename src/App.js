@@ -24,7 +24,7 @@ const theme = createMuiTheme({
   },
 });
 
-export const pp = (p) => `${PUBLIC_URL || ''}${p}`;
+export const pp = (p) => `${''}${p}`;
 
 class App extends Component {
   state = {

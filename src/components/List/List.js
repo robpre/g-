@@ -10,6 +10,7 @@ import search from './search.svg';
 import logo from './logo3.svg';
 import { Button } from '@material-ui/core';
 import Icon from './icons/Icon';
+import fixtures from './routes.json';
 
 const style = {
     width: '100%',
@@ -32,20 +33,7 @@ class ListOfWalks extends Component {
 
     componentDidMount() {
         this.setState({
-            list: Array.from({ length: 5 }).fill({
-                path: one,
-                distance: "1",
-                is_flat: true,
-                is_muddy: false,
-                is_ssf: false,
-                lighting: "open air",
-                shoes: [
-                    "Hiking boots",
-                    "Wellington boots"
-                ],
-                time: "12",
-                title: "Bacton Woods"
-            }),
+            list: fixtures,
         });
     }
 
