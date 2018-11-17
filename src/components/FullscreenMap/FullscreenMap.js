@@ -34,20 +34,22 @@ class FullscreenMap extends Component {
 
         return (
             <div style={{ width: '100%', height: '100%'}}>
-                <Map {...props} pulse>
-                    <div style={{
-                        ...style,
-                        bottom: undefined,
-                        top: 0,
-                        transform: undefined,
-                        left: 0,
-                        width: '100%',
-                        background: 'rgba(255, 255, 255, 0.80)',
-                        fontSize: '1.5rem',
-                        padding: '1rem',
-                    }}>
-                        Enjoy your {props.active && props.active.length} mile walk!
-                    </div>
+                <Map {...props} pulse  zoomControl={false}>
+                    {!this.state.walking && !this.state.done && (
+                        <div style={{
+                            ...style,
+                            bottom: undefined,
+                            top: 0,
+                            transform: undefined,
+                            left: 0,
+                            width: '100%',
+                            background: 'rgba(255, 255, 255, 0.80)',
+                            fontSize: '1.5rem',
+                            padding: '1rem',
+                        }}>
+                            Enjoy your {props.active && props.active.length} mile walk!
+                        </div>
+                    )}
                     <div style={style}>
                         {
                             !this.state.walking && !this.state.done ?
