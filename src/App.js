@@ -13,7 +13,7 @@ const history = createBrowserHistory({
   basename: PUBLIC_URL || '',
 });
 
-export const pp = (p) => `${PUBLIC_URL || ''}p`;
+export const pp = (p) => `${PUBLIC_URL || ''}${p}`;
 
 class App extends Component {
   state = {

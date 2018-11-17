@@ -16,8 +16,12 @@ const style = {
 export default (props) => (
     <div style={{ width: '100%', height: '100%'}}>
         <Map {...props}>
-            <Control position="bottomleft">
-                <h1>asdjasd</h1>
+            <Control position="topleft" >
+                <button
+                    onClick={ () => this.setState({bounds: [51.3, 0.7]}) }
+                >
+                    Reset View
+                </button>
             </Control>
         </Map>
     </div>
