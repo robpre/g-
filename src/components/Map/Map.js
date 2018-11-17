@@ -33,7 +33,7 @@ let once = false;
 
 const handleError = (e) => {
     if (!once) {
-        alert(e.message);
+        console.log(e.message);
         once = true;
     }
 }

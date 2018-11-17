@@ -11,7 +11,8 @@ import flat from './flatsurface.svg';
 import child from './child.svg';
 import road from './road.svg';
 import learnbike from './learnbike.svg';
-import { GridList, GridListTile, Tooltip } from '@material-ui/core';
+import Tooltip from '@material-ui/core/Tooltip';
+import { GridList, GridListTile } from '@material-ui/core';
 import pickRandom from 'pick-random';
 
 export default ({meta}) => {
@@ -39,11 +40,11 @@ export default ({meta}) => {
     });
 
     return (
-        <GridList cellHeight={48} cols={5}>
+        <GridList cellHeight={56} cols={Math.min(5, tileData.length)}>
             {pickRandom(tileData, {count: Math.min(5, tileData.length)}).map(tile => (
-                <GridListTile key={tile.name} cols={1}>
-                    <Tooltip disableHoverListener title={tile.name} onClick={evt => evt.stopPropagation()}>
-                        <img src={tile.image} alt={tile.name} title={tile.name} width="48" height="48" />
+                <GridListTile key={tile.name} cols={1} onClick={evt => evt.stopPropagation()}>
+                    <Tooltip disableHoverListener title={tile.name}  enterDelay={200} leaveDelay={500}>
+                        <img src={tile.image} alt={tile.name} style={{ height: 56 }} />
                     </Tooltip>
                 </GridListTile>
             ))}

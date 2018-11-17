@@ -20,25 +20,46 @@ const measure = (coords) => {
     return tot;
 };
 
-const makeThing = (path, fileName) => ({
-    path,
-    time: 123,
-    name: fileName.split('.')[0],
-    length: measure(path.features[0].geometry.coordinates),
-    distance: haversine(myLoc, toObj(getFirst(path)), {unit: 'mile'}),
-    isBuggyFriendly: bool(),
-    isShortSightedFriendly: bool(),
-    isWellLit: bool(),
-    isWelliesNeeded: bool(),
-    isWalkingBootsNeeded: bool(),
-    isTrainerFriendly: bool(),
-    isWheelchairFriendly: bool(),
-    isSlipHazard: bool(),
-    isFlatSurface: bool(),
-    isChildSafe: bool(),
-    isRoadSafe: bool(),
-    isLearningToRideAbike: bool(),
-})
+const shorted = (path) => ({
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "name": "Route",
+                "type": "Route"
+            },
+            "geometry": {
+                "type": "LineString",
+                "coordinates": path.features[0].geometry.coordinates.slice(0, 15),
+            },
+        }
+    ],
+});
+
+const makeThing = (path, fileName) => {
+    path = shorted(path);
+
+    return {
+        path,
+        time: Math.round(measure(path.features[0].geometry.coordinates) / 3 * 60),
+        name: fileName.split('.')[0],
+        length: (measure(path.features[0].geometry.coordinates)).toFixed(1),
+        distance: haversine(myLoc, toObj(getFirst(path)), {unit: 'mile'}),
+        isBuggyFriendly: bool(),
+        isShortSightedFriendly: bool(),
+        isWellLit: bool(),
+        isWelliesNeeded: bool(),
+        isWalkingBootsNeeded: bool(),
+        isTrainerFriendly: bool(),
+        isWheelchairFriendly: bool(),
+        isSlipHazard: bool(),
+        isFlatSurface: bool(),
+        isChildSafe: bool(),
+        isRoadSafe: bool(),
+        isLearningToRideAbike: bool(),
+    }
+}
 
 const walks = [];
 
