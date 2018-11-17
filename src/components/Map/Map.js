@@ -97,8 +97,8 @@ class GaMap extends Component {
             <div className="map">
                 <Map {...centering} zoom={16} {...props}>
                     <TileLayer
-                        url="http://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=37635e2da12d4bcf90bb1137d42cc392"
-                        attribution='Maps © <a href="http://www.thunderforest.com/">Thunderforest</a>, Data © OpenStreetMap contributors.'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
                     />
                     {this.state.geo && <Marker position={this.state.geo}>
                         <Popup>

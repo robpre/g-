@@ -48,7 +48,7 @@ class App extends Component {
               </Route>
               <Route path={`/map`}>
                 {(p) => (
-                  <FullscreenMap centerRoute route={this.state.active && this.state.active.path} />
+                  <FullscreenMap centerRoute active={this.state.active} route={this.state.active && this.state.active.path} />
                 )}
               </Route>
               <Route path={`/search`}>

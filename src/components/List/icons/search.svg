@@ -1,1 +1,17 @@
-<svg height='300px' width='300px'  fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 91 91" version="1.1" x="0px" y="0px"><title>search</title><desc>Created with Sketch.</desc><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"><path d="M63.1241785,52.479518 L87.8092531,77.1633266 C90.9328807,80.286794 90.9283109,85.3555048 87.8132327,88.4704234 C84.6918029,91.591693 79.6351413,91.5958688 76.505556,88.466444 L51.8204814,63.7826354 C38.7399296,71.779481 21.4196713,70.118516 10.100315,58.7997402 C-3.16576153,45.534344 -3.16576153,24.0268874 10.100315,10.7614912 C23.3663915,-2.50390491 44.8749512,-2.50390491 58.1410277,10.7614912 C69.460384,22.080267 71.1214343,39.399637 63.1241785,52.479518 L63.1241785,52.479518 Z M15.7521635,53.1481815 C5.60751679,43.004055 5.60751679,26.5571764 15.7521635,16.4130499 C25.8968103,6.26892347 42.3445324,6.26892347 52.4891792,16.4130499 C62.6338259,26.5571764 62.6338259,43.004055 52.4891792,53.1481815 C42.3445324,63.292308 25.8968103,63.292308 15.7521635,53.1481815 L15.7521635,53.1481815 Z" fill="#000000" sketch:type="MSShapeGroup"></path></g></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 300 300"
+	 style="enable-background:new 0 0 300 300;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#F7A005;}
+</style>
+<title>search</title>
+<desc>Created with Sketch.</desc>
+<g sketch:type="MSPage">
+	<path sketch:type="MSShapeGroup" class="st0" d="M208.1,173.01l81.38,81.38c10.3,10.3,10.28,27.01,0.01,37.28
+		c-10.29,10.29-26.96,10.3-37.28-0.01l-81.38-81.38c-43.12,26.36-100.22,20.89-137.54-16.43c-43.73-43.73-43.73-114.64,0-158.37
+		s114.64-43.73,158.38,0C228.99,72.79,234.47,129.89,208.1,173.01L208.1,173.01z M51.93,175.21c-33.44-33.44-33.44-87.66,0-121.1
+		s87.67-33.44,121.11,0s33.44,87.66,0,121.1S85.37,208.66,51.93,175.21L51.93,175.21z"/>
+</g>
+</svg>

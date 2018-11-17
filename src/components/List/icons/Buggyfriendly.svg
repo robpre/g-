@@ -1,1 +1,15 @@
-<svg height='300px' width='300px'  fill="#000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve"><ellipse cx="65.3" cy="90.1" rx="7.4" ry="7.4"></ellipse><path d="M5.1,40.8h36.4c0.5,0,0.9-0.4,0.9-0.9V3.4c0-0.5-0.4-0.9-0.9-0.9C20.9,2.5,4.2,19.3,4.2,39.8C4.2,40.4,4.6,40.8,5.1,40.8z"></path><path d="M93.6,29.9h-5.4c-0.7,0-1.4,0.3-1.8,0.9L75.8,44.3H5.1c-0.5,0-0.9,0.4-0.9,0.9c0,20.6,16.8,37.3,37.3,37.3  c19.7,0,35.9-15.3,37.2-34.7l10.5-13.4h4.3c1.3,0,2.3-1,2.3-2.3S94.8,29.9,93.6,29.9z"></path><circle cx="17.7" cy="90.1" r="7.4"></circle></svg>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 300 300" style="enable-background:new 0 0 300 300;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#F7A005;}
+</style>
+<ellipse class="st0" cx="195.9" cy="270.3" rx="22.2" ry="22.2"/>
+<path class="st0" d="M15.3,122.4h109.2c1.5,0,2.7-1.2,2.7-2.7V10.2c0-1.5-1.2-2.7-2.7-2.7C62.7,7.5,12.6,57.9,12.6,119.4
+	C12.6,121.2,13.8,122.4,15.3,122.4z"/>
+<path class="st0" d="M280.8,89.7h-16.2c-2.1,0-4.2,0.9-5.4,2.7l-31.8,40.5H15.3c-1.5,0-2.7,1.2-2.7,2.7
+	c0,61.8,50.4,111.9,111.9,111.9c59.1,0,107.7-45.9,111.6-104.1l31.5-40.2h12.9c3.9,0,6.9-3,6.9-6.9
+	C287.4,92.4,284.4,89.7,280.8,89.7z"/>
+<circle class="st0" cx="53.1" cy="270.3" r="22.2"/>
+</svg>

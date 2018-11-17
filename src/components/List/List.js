@@ -33,7 +33,7 @@ class ListOfWalks extends Component {
 
     componentDidMount() {
         this.setState({
-            list: fixtures,
+            list: fixtures.slice(0, 5),
         });
     }
 
@@ -64,7 +64,7 @@ class ListOfWalks extends Component {
                                 <CardContent style={{ paddingTop: 0 }}>
                                     <div>
                                         <List>
-                                            <Item title="Distance from you" value={walk.distance}/>
+                                            <Item title="Distance from you" value={Math.round(walk.distance) + (Math.round(walk.distance) > 1 ? ' miles' : ' mile') + ' away'}/>
                                             <Item title="Time" value={`${walk.time} minutes`} />
                                             <ListItem>
                                                 <Icon meta={walk} key={walk.id} />

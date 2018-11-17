@@ -8,6 +8,7 @@
     "@material-ui/core": "^3.5.1",
     "@turf/bbox": "^6.0.1",
     "haversine": "^1.1.0",
+    "pick-random": "^2.0.0",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-leaflet-control": "^2.0.0",
