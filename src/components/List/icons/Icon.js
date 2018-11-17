@@ -42,8 +42,8 @@ export default ({meta}) => {
     return (
         <GridList cellHeight={56} cols={Math.min(5, tileData.length)}>
             {pickRandom(tileData, {count: Math.min(5, tileData.length)}).map(tile => (
-                <GridListTile key={tile.name} cols={1} onClick={evt => evt.stopPropagation()}>
-                    <Tooltip disableHoverListener title={tile.name}  enterDelay={200} leaveDelay={500}>
+                <GridListTile key={tile.name} cols={1} onClick={evt => {evt.stopPropagation(); evt.preventDefault()}} onContextMenu={evt => {evt.stopPropagation(); evt.preventDefault()}}>
+                    <Tooltip title={tile.name} enterDelay={0} leaveDelay={500}>
                         <img src={tile.image} alt={tile.name} style={{ height: 56 }} />
                     </Tooltip>
                 </GridListTile>

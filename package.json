@@ -1,7 +1,7 @@
 {
   "name": "ww",
   "version": "0.1.0",
-  "homepage": "https://rpprroger.github.io/g-/",
+  "homepage": "https://app.takeyourmindforawalk.com",
   "private": true,
   "dependencies": {
     "@ansur/leaflet-pulse-icon": "^0.1.1",
@@ -10,7 +10,9 @@
     "haversine": "^1.1.0",
     "pick-random": "^2.0.0",
     "react": "^16.6.3",
+    "react-cookie-consent": "^1.9.0",
     "react-dom": "^16.6.3",
+    "react-ga": "^2.5.3",
     "react-leaflet-control": "^2.0.0",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",

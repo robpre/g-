@@ -8,7 +8,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import search from './search.svg';
 import logo from './logo3.svg';
-import { Button } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import Icon from './icons/Icon';
 import fixtures from './routes.json';
 
@@ -79,6 +79,11 @@ class ListOfWalks extends Component {
                         </ListItem>
                     ))}
                 </List>
+                <Grid container style={{padding: '1rem'}}>
+                    <Grid item xs="12">
+                        <a href="/contact-us">Contact us</a>
+                    </Grid>
+                </Grid>
             </div>
         );
     }
