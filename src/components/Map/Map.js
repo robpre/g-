@@ -7,12 +7,17 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import './map.css';
 import bbox from '@turf/bbox';
 import EventEmitter from 'eventemitter3';
+import '@ansur/leaflet-pulse-icon';
+import '@ansur/leaflet-pulse-icon/dist/L.Icon.Pulse.css';
 
 let DefaultIcon = L.icon({
   iconUrl: icon,
   shadowUrl: iconShadow,
 });
 L.Marker.prototype.options.icon = DefaultIcon;
+
+const pulsingIcon = L.icon.pulse({ iconSize:[20,20], color:'#2d89ff' });
+
 
 if (!("geolocation" in navigator)) {
     alert('No geolocation!');
@@ -37,6 +42,7 @@ const getMiddle = (geo) => {
     return geo.features[0].geometry.coordinates[Math.round(middleN/2)]
 };
 const flip = ([ lng, lat ]) => [lat, lng];
+const getFirst = geo => flip(geo.features[0].geometry.coordinates[0]);
 
 const inc = ([o, t]) => {
     return [o + .0001, t + .0001];
@@ -72,11 +78,12 @@ class GaMap extends Component {
     }
 
     render() {
-        const { route, children, centerRoute, ...props } = this.props;
+        const { route, children, centerRoute, pulse, ...props } = this.props;
         console.log('rendering geo', this.state);
         let centering = {
             center: this.state.geo
         };
+
 
         if (route && centerRoute) {
             const bboxArray = bbox(route);
@@ -99,6 +106,7 @@ class GaMap extends Component {
                         </Popup>
                     </Marker>}
                     <GeoJSON data={route} />
+                    {pulse && route ? <Marker icon={pulsingIcon} position={getFirst(route)} /> : null }
                     {children}
                 </Map>
             </div>

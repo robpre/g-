@@ -12,3 +12,12 @@ html, body, #root {
   height: 100%;
   width: 100%;
 }
+
+* {
+  font-family: henderson-sans-basic, sans-serif;
+  font-weight: 400;
+}
+
+button {
+  font-weight: bold;
+}

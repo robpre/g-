@@ -4,6 +4,7 @@
   "homepage": "https://rpprroger.github.io/g-/",
   "private": true,
   "dependencies": {
+    "@ansur/leaflet-pulse-icon": "^0.1.1",
     "@material-ui/core": "^3.5.1",
     "@turf/bbox": "^6.0.1",
     "react": "^16.6.3",
