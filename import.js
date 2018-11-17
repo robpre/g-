@@ -13,7 +13,7 @@ const toObj = ([ latitude, longitude ]) => ({latitude, longitude});
 const measure = (coords) => {
     let tot = 0;
     coords.reduce((last, lnglat) => {
-        tot += haversine(last, toObj(flip(lnglat)), {unit: 'mile'})
+        tot += haversine(toObj(flip(last)), toObj(flip(lnglat)), {unit: 'mile'})
         return lnglat;
     });
 
