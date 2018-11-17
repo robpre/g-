@@ -76,7 +76,7 @@ self.__precacheManifest = [
     "url": "/static/media/learnbike.8f4a6d47.svg"
   },
   {
-    "revision": "841e13f4c0213b2a61ca007d772964c3",
+    "revision": "bf920547e026a2f386310224b70ca9df",
     "url": "/index.html"
   }
 ];
